@@ -11,4 +11,4 @@ force control, sensing, and robot learning.
 
 ## Resume
 
-[Download Resume](resume.pdf)
+[Download Resume](docs/resume.pdf)

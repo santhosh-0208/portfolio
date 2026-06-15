@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>8-DOF Self-Balancing Robot - Santhosh Kothapalli</title>
+    <link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="container">
+            <div class="logo">SK</div>
+            <ul class="nav-links">
+                <li><a href="../index.html" class="nav-link">Home</a></li>
+                <li><a href="../index.html#projects" class="nav-link">Projects</a></li>
+                <li><a href="../index.html#about" class="nav-link">About</a></li>
+                <li><a href="../index.html#contact" class="nav-link">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="project-detail">
+        <a href="../index.html#projects" class="back-link">← Back to Projects</a>
+
+        <h1>8-DOF Self-Balancing Robot</h1>
+        <div class="project-tags" style="margin-bottom: 2rem;">
+            <span class="tag">Control Systems</span>
+            <span class="tag">Whole-Body Control</span>
+            <span class="tag">MuJoCo Sim</span>
+            <span class="tag">Reinforcement Learning</span>
+        </div>
+
+        <h2>Project Overview</h2>
+        <p>
+            The self-balancing robot was where I learned the fundamentals of control systems. This project is my attempt to push those ideas further.
+        </p>
+        <p>
+            The goal is to build a dynamically balancing mobile manipulator with eight degrees of freedom, capable of maintaining balance 
+            while performing whole-body motions. Unlike the original two-wheeled robot, balancing is no longer the only objective. The robot 
+            must simultaneously regulate body height, generate translational motion, and coordinate multiple joints while maintaining stability.
+        </p>
+        <p>
+            This project serves as a platform for exploring whole-body control, model-based control methods, and reinforcement learning on a physical robotic system.
+        </p>
+
+        <h2>Current Progress</h2>
+        <p>
+            The robot is currently capable of:
+        </p>
+        <ul>
+            <li>Maintaining dynamic balance on two wheels</li>
+            <li>Controlling forward and backward translational velocity</li>
+            <li>Regulating body height through coordinated squatting motions</li>
+            <li>Executing multiple control objectives simultaneously</li>
+        </ul>
+        <p>
+            At the current stage, the robot can independently control its center of mass height and translational velocity while maintaining balance.
+        </p>
+
+        <h2>Mechanical Design</h2>
+        <p>
+            The robot consists of:
+        </p>
+        <ul>
+            <li>Two drive wheels providing actuation and balance control</li>
+            <li>Four articulated legs</li>
+            <li>Eight total degrees of freedom</li>
+            <li>Inertial sensing for attitude estimation</li>
+            <li>Embedded real-time control hardware</li>
+        </ul>
+        <p>
+            The leg mechanisms allow the robot to actively reposition its center of mass and modify its body height, introducing a richer set 
+            of behaviors compared to a traditional inverted pendulum.
+        </p>
+
+        <h2>Control Architecture</h2>
+        <p>
+            The current controller is built as a hierarchy of control loops, each managing different aspects of the robot's behavior:
+        </p>
+
+        <h3>Balance Control</h3>
+        <p>
+            The lowest level controller stabilizes the robot as an inverted pendulum by regulating body pitch. This provides the 
+            fundamental stability required for all other operations.
+        </p>
+
+        <h3>Velocity Control</h3>
+        <p>
+            A higher-level loop commands translational motion while preserving stability. This allows the robot to move forward 
+            and backward while maintaining its balance.
+        </p>
+
+        <h3>Height Regulation</h3>
+        <p>
+            The leg joints coordinate to adjust body height through squatting motions while maintaining the desired center of mass trajectory.
+        </p>
+
+        <p>
+            Managing the interactions between these objectives has been one of the most challenging aspects of the project. Changes in body height 
+            affect the system dynamics, which in turn influence balancing behavior and velocity tracking.
+        </p>
+
+        <h2>Key Challenges</h2>
+        <p>
+            The most interesting challenge so far has been dealing with the coupling between different control objectives.
+        </p>
+        <p>
+            Unlike the simpler balancing robot, where the plant dynamics remain relatively fixed, this robot continuously changes its own dynamics 
+            through leg motion. A controller that works well at one body height may behave differently at another.
+        </p>
+        <p>
+            This has forced me to think much more carefully about:
+        </p>
+        <ul>
+            <li><strong>Dynamic Stability</strong> - How changing body height affects stability margins</li>
+            <li><strong>State Estimation</strong> - Accurately tracking position and velocity with changing dynamics</li>
+            <li><strong>Controller Interactions</strong> - How gains at one level affect others</li>
+            <li><strong>Gain Scheduling</strong> - Adapting controller parameters based on operating point</li>
+            <li><strong>Whole-Body Coordination</strong> - Ensuring all joints work together toward common goals</li>
+        </ul>
+        <p>
+            Many of the problems have not been software bugs but systems-level problems where the robot behaves exactly as instructed, 
+            yet not as intended. This teaches a deeper lesson about the difference between correct code and correct behavior.
+        </p>
+
+        <h2>Next Steps: Adaptive Control with Reinforcement Learning</h2>
+        <p>
+            The current system relies on manually tuned PID controllers. This works well for nominal operating conditions but struggles 
+            with variations in the environment or changes in the system dynamics.
+        </p>
+        <p>
+            The next stage of the project is to investigate whether reinforcement learning can improve performance by dynamically adapting 
+            controller parameters based on the robot's operating conditions.
+        </p>
+        <p>
+            Rather than replacing the existing control architecture, the goal is to use learning as an augmentation layer on top of proven 
+            classical control methods. This approach combines:
+        </p>
+        <ul>
+            <li>The robustness and interpretability of PID control</li>
+            <li>The adaptability of modern learning-based techniques</li>
+        </ul>
+        <p>
+            The result should be a system that maintains the reliability of classical control while gaining the flexibility of adaptive learning.
+        </p>
+    </div>
+
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2026 Santhosh Kothapalli. All rights reserved.</p>
+            <div class="social-links">
+                <a href="https://github.com" target="_blank">GitHub</a>
+                <a href="https://linkedin.com" target="_blank">LinkedIn</a>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

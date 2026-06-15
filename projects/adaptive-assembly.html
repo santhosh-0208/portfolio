@@ -23,6 +23,12 @@
         <a href="../index.html#projects" class="back-link">← Back to Projects</a>
 
         <h1>Adaptive Robotic Assembly</h1>
+        <div class="project-tags" style="margin-bottom: 2rem;">
+            <span class="tag">Vision</span>
+            <span class="tag">Force Control</span>
+            <span class="tag">Sensor Fusion</span>
+            <span class="tag">Manipulator Physics</span>
+        </div>
 
         <h2>The Challenge</h2>
         <p>
@@ -39,7 +45,7 @@
         <p>
             Consider a simple peg-in-hole insertion task:
         </p>
-        <ul style="color: var(--text-secondary); margin: 1rem 0 1rem 2rem;">
+        <ul>
             <li>The peg's position might be off by a few millimeters</li>
             <li>The hole's orientation might be slightly misaligned</li>
             <li>Contact forces provide rich information about misalignment, but only after contact</li>
@@ -55,19 +61,19 @@
             The system consisted of three main components:
         </p>
 
-        <h3 style="color: var(--secondary-color); margin-top: 1.5rem;">1. Image-Based Visual Servoing</h3>
+        <h3>1. Image-Based Visual Servoing</h3>
         <p>
             A computer vision pipeline continuously estimated alignment errors using camera feedback. 
             This provided global information about the peg's position relative to the hole before contact.
         </p>
 
-        <h3 style="color: var(--secondary-color); margin-top: 1.5rem;">2. Virtual Force-Torque Sensor</h3>
+        <h3>2. Virtual Force-Torque Sensor</h3>
         <p>
             A virtual force-torque sensor estimated interaction forces from joint torque sensor measurements. 
             This provided immediate, high-bandwidth feedback about contact dynamics.
         </p>
 
-        <h3 style="color: var(--secondary-color); margin-top: 1.5rem;">3. Sensor Fusion Layer</h3>
+        <h3>3. Sensor Fusion Layer</h3>
         <p>
             A sensor fusion layer combined both sources of information to generate a more reliable estimate 
             of the assembly state and guide the insertion motion.
@@ -75,20 +81,20 @@
 
         <h2>Key Technical Challenges</h2>
 
-        <h3 style="color: var(--secondary-color); margin-top: 1.5rem;">Vision-Force Tradeoffs</h3>
+        <h3>Vision-Force Tradeoffs</h3>
         <p>
             One of the biggest lessons from this project was understanding the tradeoffs between sensing modalities:
         </p>
-        <ul style="color: var(--text-secondary); margin: 1rem 0 1rem 2rem;">
+        <ul>
             <li><strong>Vision:</strong> Provides rich information but can be noisy, occluded, and delayed</li>
             <li><strong>Force:</strong> Immediate and highly informative during contact but tells you very little before contact occurs</li>
         </ul>
 
-        <h3 style="color: var(--secondary-color); margin-top: 1.5rem;">Timing and Confidence</h3>
+        <h3>Timing and Confidence</h3>
         <p>
             Getting both systems to complement each other required thinking carefully about:
         </p>
-        <ul style="color: var(--text-secondary); margin: 1rem 0 1rem 2rem;">
+        <ul>
             <li>Which source to trust at different stages of the insertion</li>
             <li>How to weight conflicting information</li>
             <li>When to switch between vision-guided and force-guided control</li>

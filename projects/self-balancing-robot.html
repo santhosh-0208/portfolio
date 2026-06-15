@@ -23,16 +23,29 @@
         <a href="../index.html#projects" class="back-link">← Back to Projects</a>
 
         <h1>Self Balancing Robot</h1>
+        <div class="project-tags" style="margin-bottom: 2rem;">
+            <span class="tag">Control Systems</span>
+            <span class="tag">Embedded Systems</span>
+            <span class="tag">Reinforcement Learning</span>
+        </div>
 
-        <p>
-            I've always found inverted pendulums fascinating. They are simple enough to understand on paper, 
-            but difficult enough to expose every weakness in your model, controller, hardware, and assumptions.
-        </p>
+        <div style="display: flex; gap: 1rem; margin-bottom: 2rem;">
+            <a href="https://github.com/santhosh-0208/invereted_pendulum.git" target="_blank" class="action-link">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>
+                View on GitHub
+            </a>
+            
+        </div>
 
         <h2>Project Overview</h2>
         <p>
+            Inverted pendulums are always fascinating. They are simple enough to understand on paper, 
+            but difficult enough to expose every weakness in your model, controller, hardware, and assumptions.
+            A lot can change depending on the system dynamics, type of motors you use, and even the sampling rate of your control loop. 
             This project began as an attempt to build a two-wheeled self-balancing robot from scratch and 
             use it as a platform to learn controls, embedded systems, and eventually reinforcement learning.
+
+            Check out the advanced version of this I'm currently working on, the one with 8 degrees of freedom and whole-body control: <a href="8-dof-balancing-robot.html" class="inline-link">8-DOF Balancing Robot</a>.
         </p>
         <p>
             I designed and assembled the hardware, integrated the sensors and motor drivers, and developed 
@@ -45,7 +58,7 @@
         <p>
             The physical robot consists of:
         </p>
-        <ul style="color: var(--text-secondary); margin: 1rem 0 1rem 2rem;">
+        <ul>
             <li>Two DC motors with wheel encoders for velocity feedback</li>
             <li>9-axis IMU for attitude and angular velocity measurement</li>
             <li>Microcontroller running the real-time control loop</li>
@@ -62,7 +75,7 @@
         <p>
             Solving these issues taught me more about practical control systems than any textbook could:
         </p>
-        <ul style="color: var(--text-secondary); margin: 1rem 0 1rem 2rem;">
+        <ul>
             <li><strong>Sensor Calibration</strong> - Ensuring IMU measurements are accurate and bias-corrected</li>
             <li><strong>State Estimation</strong> - Using complementary filters to fuse accelerometer and gyro data</li>
             <li><strong>Control Loop Timing</strong> - Meeting strict timing requirements for stability</li>
@@ -84,7 +97,7 @@
             What made the project interesting was not determining whether PID or reinforcement learning was 
             "better," but understanding the strengths and limitations of each approach:
         </p>
-        <ul style="color: var(--text-secondary); margin: 1rem 0 1rem 2rem;">
+        <ul>
             <li><strong>Classical Control</strong> - Provided predictability, stability guarantees, and zero-shot transfer</li>
             <li><strong>Learning-Based</strong> - Offered flexibility, learned directly from physical data, but required training time and raised robustness questions</li>
         </ul>
@@ -98,7 +111,7 @@
         <p>
             The most important lessons:
         </p>
-        <ul style="color: var(--text-secondary); margin: 1rem 0 1rem 2rem;">
+        <ul>
             <li>Theory meets reality in subtle and often unexpected ways</li>
             <li>Hardware constraints and timing matter more than elegant mathematics</li>
             <li>Different tools excel in different domains—sometimes the best solution uses both</li>
