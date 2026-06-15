@@ -32,8 +32,8 @@
 
         <h2>The Challenge</h2>
         <p>
-            This project started from a question I kept running into while deploying our robots on a real manufacturing line: 
-            how do you make a robot reliably complete an assembly task when the world is never exactly as expected?
+            This project started from a question I kept running into while deploying our robots on a manufacturing line: 
+            how do you make a robot reliably complete an assembly task when the world is never exactly as expected, where simple position control is insufficient?
         </p>
         <p>
             Traditional industrial automation works brilliantly when everything is fixtured and repeatable. 
@@ -46,7 +46,7 @@
             Consider a simple peg-in-hole insertion task:
         </p>
         <ul>
-            <li>The peg's position might be off by a few millimeters</li>
+            <li>The peg's position might be off by a few millimeters or even a few microns (think piston-cylinder assembly in an engine)</li>
             <li>The hole's orientation might be slightly misaligned</li>
             <li>Contact forces provide rich information about misalignment, but only after contact</li>
             <li>Vision can guide the approach, but it's noisy and delayed</li>
@@ -57,21 +57,24 @@
 
         <h2>Solution Architecture</h2>
         <p>
-            I wanted to explore how vision and force sensing could be combined to create more robust assembly behavior. 
+            I wanted to explore how force sensing and then vision could be combined to create more robust assembly behavior. 
             The system consisted of three main components:
+        </p>
+        
+        <h3>2. Virtual Force-Torque Sensor</h3>
+        <p>
+            A virtual force-torque sensor estimated interaction forces from joint torque sensor measurements. 
+            This provided immediate, high-bandwidth feedback about contact dynamics.
+            The force information combined with joint position encoders is, in most industrial applications, enough to reliably detect misalignment and guide the robot's motion during insertion.
         </p>
 
         <h3>1. Image-Based Visual Servoing</h3>
         <p>
             A computer vision pipeline continuously estimated alignment errors using camera feedback. 
             This provided global information about the peg's position relative to the hole before contact.
+            This is used as a secondary source of information in cases where the misaligenment is too large.
         </p>
 
-        <h3>2. Virtual Force-Torque Sensor</h3>
-        <p>
-            A virtual force-torque sensor estimated interaction forces from joint torque sensor measurements. 
-            This provided immediate, high-bandwidth feedback about contact dynamics.
-        </p>
 
         <h3>3. Sensor Fusion Layer</h3>
         <p>
@@ -81,7 +84,7 @@
 
         <h3>4. Adaptive Control Layer</h3>
         <p>
-            An state machine driven control loop adjusted the robot's behavior in real-time based on the fused sensor information, 
+            An state machine driven control loop adjusts the robot's behavior in real-time based on the fused sensor information, 
             allowing for more robust and flexible assembly operations.
         </p>
         <h2>Key Technical Challenges</h2>
@@ -91,8 +94,8 @@
             One of the biggest lessons from this project was understanding the tradeoffs between sensing modalities:
         </p>
         <ul>
-            <li><strong>Vision:</strong> Provides rich information but can be noisy, occluded, and delayed</li>
             <li><strong>Force:</strong> Immediate and highly informative during contact but tells you very little before contact occurs</li>
+            <li><strong>Vision:</strong> Provides rich information but can be noisy, occluded, and delayed</li>
         </ul>
 
         <h3>Timing and Confidence</h3>
