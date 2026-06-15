@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Suspension System Optimization - Santhosh Kothapalli</title>
+    <link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="container">
+            <div class="logo">SK</div>
+            <ul class="nav-links">
+                <li><a href="../index.html" class="nav-link">Home</a></li>
+                <li><a href="../index.html#projects" class="nav-link">Projects</a></li>
+                <li><a href="../index.html#about" class="nav-link">About</a></li>
+                <li><a href="../index.html#contact" class="nav-link">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="project-detail">
+        <a href="../index.html#projects" class="back-link">← Back to Projects</a>
+
+        <h1>Suspension System Optimization</h1>
+
+        <h2>Motivation</h2>
+        <p>
+            This project feels very dear to me because this is where it all started.
+        </p>
+        <p>
+            During COVID, I became fascinated with numerical optimization methods and wanted to apply them to a real engineering problem.
+        </p>
+
+        <h2>Problem</h2>
+        <p>
+            Designing a suspension involves balancing multiple competing objectives:
+        </p>
+        <ul style="color: var(--text-secondary); margin: 1rem 0 1rem 2rem;">
+            <li>Ride comfort</li>
+            <li>Body roll</li>
+            <li>Camber variation</li>
+            <li>Stability</li>
+        </ul>
+        <p>
+            The search space is highly coupled and difficult to tune manually. Traditional suspension design relies on intuition and iterative testing, which is both time-consuming and costly.
+        </p>
+
+        <h2>Approach</h2>
+        <p>
+            I built a comprehensive optimization system consisting of:
+        </p>
+        <ul style="color: var(--text-secondary); margin: 1rem 0 1rem 2rem;">
+            <li><strong>Double Wishbone Suspension Model</strong> - Kinematic and dynamic model of the suspension geometry</li>
+            <li><strong>Dynamic Simulation</strong> - High-fidelity simulation of vehicle response to inputs</li>
+            <li><strong>Genetic Algorithm</strong> - Built from scratch to explore the design space</li>
+            <li><strong>Objective Function</strong> - Combining bounce, roll, and camber metrics</li>
+        </ul>
+        <p>
+            The genetic algorithm evolved population of suspension designs over hundreds of generations, 
+            evaluating each design through dynamic simulation and scoring it against the objective function.
+        </p>
+
+        <img src="../images/suspension_model.png" alt="Suspension Model" class="project-image">
+
+        <h2>Challenges</h2>
+        <p>
+            The biggest challenge wasn't coding the genetic algorithm itself. It was validating the mathematical model.
+        </p>
+        <p>
+            Many times the code executed perfectly while the physics was completely wrong. Small errors in 
+            kinematic calculations or force computations would compound through the simulation, leading to 
+            unrealistic results that looked numerically valid on the surface.
+        </p>
+        <p>
+            I spent considerable time:
+        </p>
+        <ul style="color: var(--text-secondary); margin: 1rem 0 1rem 2rem;">
+            <li>Validating model predictions against known suspension behaviors</li>
+            <li>Comparing simulation results with real-world data</li>
+            <li>Debugging subtle numerical issues in the kinematics</li>
+            <li>Tuning the objective function weights</li>
+        </ul>
+
+        <h2>Results</h2>
+        <p>
+            The genetic algorithm successfully optimized suspension parameters across all competing objectives. 
+            The final designs demonstrated improvements in:
+        </p>
+        <ul style="color: var(--text-secondary); margin: 1rem 0 1rem 2rem;">
+            <li>Ride comfort with reduced bounce amplitude</li>
+            <li>Better body roll control</li>
+            <li>Improved camber stability across suspension travel</li>
+        </ul>
+
+        <img src="../images/ga_results.png" alt="Optimization Results" class="project-image">
+
+        <h2>Key Learnings</h2>
+        <p>
+            This project taught me that optimization is only as good as the models and objectives that drive it. 
+            A beautiful algorithm is worthless if it's optimizing the wrong thing or working with invalid assumptions.
+        </p>
+        <p>
+            It also reinforced the importance of validation at every level—from individual equations to complete simulations. 
+            The "code runs" is not the same as "code is correct."
+        </p>
+    </div>
+
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2026 Santhosh Kothapalli. All rights reserved.</p>
+            <div class="social-links">
+                <a href="https://github.com" target="_blank">GitHub</a>
+                <a href="https://linkedin.com" target="_blank">LinkedIn</a>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

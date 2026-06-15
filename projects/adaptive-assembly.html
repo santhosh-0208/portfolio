@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Adaptive Robotic Assembly - Santhosh Kothapalli</title>
+    <link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="container">
+            <div class="logo">SK</div>
+            <ul class="nav-links">
+                <li><a href="../index.html" class="nav-link">Home</a></li>
+                <li><a href="../index.html#projects" class="nav-link">Projects</a></li>
+                <li><a href="../index.html#about" class="nav-link">About</a></li>
+                <li><a href="../index.html#contact" class="nav-link">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="project-detail">
+        <a href="../index.html#projects" class="back-link">← Back to Projects</a>
+
+        <h1>Adaptive Robotic Assembly</h1>
+
+        <h2>The Challenge</h2>
+        <p>
+            This project started from a question I kept running into while working with industrial robots: 
+            how do you make a robot reliably complete an assembly task when the world is never exactly as expected?
+        </p>
+        <p>
+            Traditional industrial automation works brilliantly when everything is fixtured and repeatable. 
+            But even small position errors can cause insertion tasks to fail. Humans naturally compensate using 
+            vision and touch; robots need to learn to do the same.
+        </p>
+
+        <h2>Problem Statement</h2>
+        <p>
+            Consider a simple peg-in-hole insertion task:
+        </p>
+        <ul style="color: var(--text-secondary); margin: 1rem 0 1rem 2rem;">
+            <li>The peg's position might be off by a few millimeters</li>
+            <li>The hole's orientation might be slightly misaligned</li>
+            <li>Contact forces provide rich information about misalignment, but only after contact</li>
+            <li>Vision can guide the approach, but it's noisy and delayed</li>
+        </ul>
+        <p>
+            The robot must fuse information from multiple sources and adapt its behavior in real-time.
+        </p>
+
+        <h2>Solution Architecture</h2>
+        <p>
+            I wanted to explore how vision and force sensing could be combined to create more robust assembly behavior. 
+            The system consisted of three main components:
+        </p>
+
+        <h3 style="color: var(--secondary-color); margin-top: 1.5rem;">1. Image-Based Visual Servoing</h3>
+        <p>
+            A computer vision pipeline continuously estimated alignment errors using camera feedback. 
+            This provided global information about the peg's position relative to the hole before contact.
+        </p>
+
+        <h3 style="color: var(--secondary-color); margin-top: 1.5rem;">2. Virtual Force-Torque Sensor</h3>
+        <p>
+            A virtual force-torque sensor estimated interaction forces from joint torque sensor measurements. 
+            This provided immediate, high-bandwidth feedback about contact dynamics.
+        </p>
+
+        <h3 style="color: var(--secondary-color); margin-top: 1.5rem;">3. Sensor Fusion Layer</h3>
+        <p>
+            A sensor fusion layer combined both sources of information to generate a more reliable estimate 
+            of the assembly state and guide the insertion motion.
+        </p>
+
+        <h2>Key Technical Challenges</h2>
+
+        <h3 style="color: var(--secondary-color); margin-top: 1.5rem;">Vision-Force Tradeoffs</h3>
+        <p>
+            One of the biggest lessons from this project was understanding the tradeoffs between sensing modalities:
+        </p>
+        <ul style="color: var(--text-secondary); margin: 1rem 0 1rem 2rem;">
+            <li><strong>Vision:</strong> Provides rich information but can be noisy, occluded, and delayed</li>
+            <li><strong>Force:</strong> Immediate and highly informative during contact but tells you very little before contact occurs</li>
+        </ul>
+
+        <h3 style="color: var(--secondary-color); margin-top: 1.5rem;">Timing and Confidence</h3>
+        <p>
+            Getting both systems to complement each other required thinking carefully about:
+        </p>
+        <ul style="color: var(--text-secondary); margin: 1rem 0 1rem 2rem;">
+            <li>Which source to trust at different stages of the insertion</li>
+            <li>How to weight conflicting information</li>
+            <li>When to switch between vision-guided and force-guided control</li>
+            <li>How to detect and recover from failures</li>
+        </ul>
+
+        <h2>The Broader Lesson</h2>
+        <p>
+            This project also introduced me to a recurring theme in robotics: <strong>the best solution is often 
+            not choosing between two approaches, but finding a way for them to work together.</strong>
+        </p>
+        <p>
+            Rather than asking "Should I use vision or force control?", the right question is "How can vision and 
+            force control complement each other?" Each has its strengths, and the magic happens when they're 
+            orchestrated properly.
+        </p>
+
+        <h2>Impact and Reflection</h2>
+        <p>
+            Looking back, this project was my first serious exploration into the intersection of perception, 
+            control, and robot learning. It pushed me to think beyond individual algorithms and start designing 
+            complete robotic systems.
+        </p>
+        <p>
+            The skills developed here—sensor integration, real-time control, handling uncertainty, and 
+            multi-modal reasoning—have become foundational to how I approach robot systems design.
+        </p>
+    </div>
+
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2026 Santhosh Kothapalli. All rights reserved.</p>
+            <div class="social-links">
+                <a href="https://github.com" target="_blank">GitHub</a>
+                <a href="https://linkedin.com" target="_blank">LinkedIn</a>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

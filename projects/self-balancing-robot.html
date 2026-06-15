@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Self Balancing Robot - Santhosh Kothapalli</title>
+    <link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="container">
+            <div class="logo">SK</div>
+            <ul class="nav-links">
+                <li><a href="../index.html" class="nav-link">Home</a></li>
+                <li><a href="../index.html#projects" class="nav-link">Projects</a></li>
+                <li><a href="../index.html#about" class="nav-link">About</a></li>
+                <li><a href="../index.html#contact" class="nav-link">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="project-detail">
+        <a href="../index.html#projects" class="back-link">← Back to Projects</a>
+
+        <h1>Self Balancing Robot</h1>
+
+        <p>
+            I've always found inverted pendulums fascinating. They are simple enough to understand on paper, 
+            but difficult enough to expose every weakness in your model, controller, hardware, and assumptions.
+        </p>
+
+        <h2>Project Overview</h2>
+        <p>
+            This project began as an attempt to build a two-wheeled self-balancing robot from scratch and 
+            use it as a platform to learn controls, embedded systems, and eventually reinforcement learning.
+        </p>
+        <p>
+            I designed and assembled the hardware, integrated the sensors and motor drivers, and developed 
+            the software needed to estimate the robot's state in real time. To understand the system properly, 
+            I derived its dynamics and performed frequency response analysis to identify the plant characteristics 
+            before designing a controller.
+        </p>
+
+        <h2>Hardware Development</h2>
+        <p>
+            The physical robot consists of:
+        </p>
+        <ul style="color: var(--text-secondary); margin: 1rem 0 1rem 2rem;">
+            <li>Two DC motors with wheel encoders for velocity feedback</li>
+            <li>9-axis IMU for attitude and angular velocity measurement</li>
+            <li>Microcontroller running the real-time control loop</li>
+            <li>Motor drivers for bidirectional motor control</li>
+            <li>Mechanical frame for housing all components</li>
+        </ul>
+
+        <h2>Control Systems</h2>
+        <p>
+            The first balancing attempts were far less graceful than the final result. Small errors in sensor 
+            calibration, delays in the control loop, and noise in the measurements would quickly cause the robot 
+            to oscillate or fall over.
+        </p>
+        <p>
+            Solving these issues taught me more about practical control systems than any textbook could:
+        </p>
+        <ul style="color: var(--text-secondary); margin: 1rem 0 1rem 2rem;">
+            <li><strong>Sensor Calibration</strong> - Ensuring IMU measurements are accurate and bias-corrected</li>
+            <li><strong>State Estimation</strong> - Using complementary filters to fuse accelerometer and gyro data</li>
+            <li><strong>Control Loop Timing</strong> - Meeting strict timing requirements for stability</li>
+            <li><strong>Noise Management</strong> - Filtering noisy sensor data without introducing excessive lag</li>
+        </ul>
+
+        <p>
+            Once a stable PID controller was working reliably, the robot could balance indefinitely and 
+            respond to disturbances smoothly.
+        </p>
+
+        <h2>Classical Control vs. Learning-Based Approaches</h2>
+        <p>
+            Once the PID controller was stable, I became curious about how modern learning-based methods 
+            would compare against classical control. I trained a reinforcement learning policy and deployed 
+            it directly onto the physical hardware, using IMU measurements as inputs and motor commands as outputs.
+        </p>
+        <p>
+            What made the project interesting was not determining whether PID or reinforcement learning was 
+            "better," but understanding the strengths and limitations of each approach:
+        </p>
+        <ul style="color: var(--text-secondary); margin: 1rem 0 1rem 2rem;">
+            <li><strong>Classical Control</strong> - Provided predictability, stability guarantees, and zero-shot transfer</li>
+            <li><strong>Learning-Based</strong> - Offered flexibility, learned directly from physical data, but required training time and raised robustness questions</li>
+        </ul>
+
+        <h2>Key Insights</h2>
+        <p>
+            This project became a personal playground for exploring the relationship between physics, control theory, 
+            embedded systems, and machine learning. It remains one of the projects that most influenced how I think 
+            about robotics today.
+        </p>
+        <p>
+            The most important lessons:
+        </p>
+        <ul style="color: var(--text-secondary); margin: 1rem 0 1rem 2rem;">
+            <li>Theory meets reality in subtle and often unexpected ways</li>
+            <li>Hardware constraints and timing matter more than elegant mathematics</li>
+            <li>Different tools excel in different domains—sometimes the best solution uses both</li>
+            <li>Building physical systems teaches lessons that simulations often miss</li>
+        </ul>
+    </div>
+
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2026 Santhosh Kothapalli. All rights reserved.</p>
+            <div class="social-links">
+                <a href="https://github.com" target="_blank">GitHub</a>
+                <a href="https://linkedin.com" target="_blank">LinkedIn</a>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
